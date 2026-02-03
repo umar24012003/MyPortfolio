@@ -7,38 +7,39 @@ import { ExternalLink, Github, Layers, ArrowUpRight } from 'lucide-react';
 const projects = [
   {
     id: "01",
-    title: "Restaurant Management System",
-    tech: ["C++"],
-    description: "A complete restaurant operations system for managing orders, menus, billing, and table reservations. Streamlines kitchen workflows with real-time order tracking.",
-    link: "#",
-    github: "#",
+    title: "Gujrat Fans",
+    tech: ["Next.js","Tailwind Css"],
+    description: "Official brand website for Gujrat Fans, designed to display fan models, specifications, and company information. Optimized for speed and mobile devices.",
+    // FIXED: Added https:// and removed the *
+    link: "https://gf-att.vercel.app", 
+    github: "https://github.com/umar24012003/GujratFans",
     color: "#3b82f6"
   },
   {
     id: "02",
     title: "Finance Management System",
     tech: ["Next.Js", "Tailwind Css", "Material Ui"],
-    description: "A modern finance dashboard for tracking expenses, budgets, and financial reports in real time. Features interactive charts and secure authentication.",
-    link: "#",
-    github: "#",
+    description: "A modern finance dashboard for tracking expenses, budgets, and financial reports in real time. Features interactive charts.",
+    link: "#", // Keep as # if not deployed
+    github: "https://github.com/umar24012003/finance-management",
     color: "#60a5fa"
   },
   {
     id: "03",
-    title: "B2C E-commerce",
+    title: "B2C",
     tech: ["React", "Express", "Node.js", "MongoDb", "TypeScript"],
-    description: "A scalable B2C platform enabling product browsing, secure purchases, and user account management. Optimized for smooth customer experience.",
-    link: "#",
-    github: "#",
+    description: "A scalable B2C platform enabling product browsing, secure purchases, and user account management.",
+    link: "https://b2cinc.com/",
+    github: "#", // Added missing github property to prevent errors
     color: "#2563eb"
   },
   {
     id: "04",
-    title: "Trading Single Page",
+    title: "Trading Landing Page",
     tech: ["Next.js", "Tailwind CSS", "TypeScript"],
-    description: "A responsive single-page trading interface for monitoring markets, executing trades, and viewing live price updates with real-time data.",
-    link: "#",
-    github: "#",
+    description: "A responsive single-page trading interface for monitoring markets and viewing live price updates with real-time data.",
+    link: "https://trading-app-4xjl.vercel.app/",
+    github: "#", // Added missing github property
     color: "#1d4ed8"
   }
 ];
@@ -47,7 +48,6 @@ export default function RecentProjects() {
   const targetRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check for screen size to disable horizontal scroll on mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
@@ -59,7 +59,6 @@ export default function RecentProjects() {
     target: targetRef,
   });
 
-  // Creates the horizontal sliding effect (only used on desktop)
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
 
   return (
@@ -69,22 +68,16 @@ export default function RecentProjects() {
     >
       <div className={`${isMobile ? 'relative' : 'sticky top-0 h-screen'} flex items-center overflow-hidden`}>
         
-        {/* Section Watermark - Scales down for mobile */}
         <div className="absolute top-10 left-4 md:left-10 pointer-events-none">
            <h2 className="text-white/[0.02] text-[25vw] lg:text-[20vw] font-black uppercase leading-none">
             WORK
           </h2>
         </div>
 
-        {/* Main Container: 
-          On Desktop: It uses motion.div for horizontal movement.
-          On Mobile: It's a standard flex-col grid.
-        */}
         <motion.div 
           style={{ x: isMobile ? 0 : x }} 
           className={`flex ${isMobile ? 'flex-col gap-8 px-6' : 'flex-row gap-12 px-20'} w-full transition-all`}
         >
-          {/* Introductory Header Card */}
           <div className={`flex-shrink-0 ${isMobile ? 'w-full mb-10' : 'w-[400px]'} flex flex-col justify-center`}>
             <div className="flex items-center gap-4 mb-4 md:mb-6">
               <div className="h-[2px] w-8 md:w-12 bg-blue-600" />
@@ -93,12 +86,8 @@ export default function RecentProjects() {
             <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-8">
               Crafting <span className="text-blue-600">Digital</span> Experiences
             </h3>
-            <p className="text-slate-400 text-base md:text-lg leading-relaxed max-w-md">
-              A collection of systems and interfaces built with precision and modern engineering.
-            </p>
           </div>
 
-          {/* Project Cards */}
           {projects.map((project) => (
             <motion.div
               key={project.id}
@@ -112,11 +101,22 @@ export default function RecentProjects() {
                   <span className="text-4xl md:text-6xl font-black text-white/5 group-hover:text-blue-500/20 transition-colors duration-500 font-mono">
                     {project.id}
                   </span>
-                  <div className="flex gap-2 md:gap-3">
-                    <a href={project.github} className="p-2 md:p-3 bg-slate-800 rounded-full text-white hover:bg-blue-600 transition-colors">
+                  <div className="flex gap-2 md:gap-3 relative z-50"> {/* Added z-50 to ensure links are clickable */}
+                    {/* FIXED: Added target="_blank" and rel="noopener noreferrer" */}
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-2 md:p-3 bg-slate-800 rounded-full text-white hover:bg-blue-600 transition-colors"
+                    >
                       <Github size={18} />
                     </a>
-                    <a href={project.link} className="p-2 md:p-3 bg-blue-600 rounded-full text-white hover:bg-white hover:text-blue-600 transition-colors">
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-2 md:p-3 bg-blue-600 rounded-full text-white hover:bg-white hover:text-blue-600 transition-colors"
+                    >
                       <ExternalLink size={18} />
                     </a>
                   </div>
@@ -148,18 +148,6 @@ export default function RecentProjects() {
               </div>
             </motion.div>
           ))}
-
-          {/* End Of Section (Hidden on Mobile for cleaner flow) */}
-          {!isMobile && (
-            <div className="flex-shrink-0 w-[400px] flex items-center justify-center">
-              <div className="text-center group cursor-pointer">
-                <div className="w-20 h-20 rounded-full border border-dashed border-slate-700 flex items-center justify-center mb-4 mx-auto group-hover:border-blue-500 group-hover:rotate-90 transition-all duration-500">
-                   <ArrowUpRight className="text-slate-700 group-hover:text-blue-500" size={32} />
-                </div>
-                <p className="text-slate-500 uppercase tracking-widest text-sm font-bold">View Archive</p>
-              </div>
-            </div>
-          )}
         </motion.div>
       </div>
     </section>

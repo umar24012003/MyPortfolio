@@ -14,8 +14,38 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // --- UNIQUE ELASTIC LIQUID SCROLL ANIMATION ---
+  const liquidScroll = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    
+    // If it's the home link or #home, scroll to 0, otherwise find the element
+    const target = href === "#home" ? { getBoundingClientRect: () => ({ top: -window.pageYOffset }) } : document.querySelector(href);
+    if (!target) return;
+
+    const targetPosition = href === "#home" ? 0 : (target as HTMLElement).getBoundingClientRect().top + window.pageYOffset - 80;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime: number | null = null;
+
+    // Custom Elastic Easing (Matches Navbar for Consistency)
+    const easeOutElastic = (t: number, b: number, c: number, d: number) => {
+      let s = 1.70158; let p = 0; let a = c;
+      if (t === 0) return b; if ((t /= d) === 1) return b + c; if (!p) p = d * 0.3;
+      if (a < Math.abs(c)) { a = c; s = p / 4; }
+      else s = p / (2 * Math.PI) * Math.asin(c / a);
+      return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+    };
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeOutElastic(timeElapsed, startPosition, distance, 1200);
+      window.scrollTo(0, run);
+      if (timeElapsed < 1200) requestAnimationFrame(animation);
+    };
+
+    requestAnimationFrame(animation);
   };
 
   return (
@@ -32,7 +62,7 @@ export default function Footer() {
           <div className="md:col-span-1 space-y-6">
             <a 
               href="#home" 
-              onClick={(e) => { e.preventDefault(); scrollToTop(); }}
+              onClick={(e) => liquidScroll(e, "#home")}
               className="flex items-center gap-3 group cursor-pointer"
             >
               <div className="h-10 w-10 rounded-xl bg-blue-600 flex items-center justify-center font-black text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] group-hover:scale-110 transition-transform">
@@ -45,7 +75,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* QUICK LINKS - Updated Hrefs to match Page IDs */}
+          {/* QUICK LINKS - ANIMATION APPLIED */}
           <div className="md:col-span-1">
             <h4 className="text-blue-500 text-[10px] font-black uppercase tracking-[0.2em] mb-6">Navigation</h4>
             <ul className="space-y-4">
@@ -56,7 +86,11 @@ export default function Footer() {
                 { name: "Experience", href: "#experience" }
               ].map((item) => (
                 <li key={item.name}>
-                  <a href={item.href} className="text-slate-400 hover:text-white text-sm transition-colors duration-300 flex items-center gap-2 group">
+                  <a 
+                    href={item.href} 
+                    onClick={(e) => liquidScroll(e, item.href)}
+                    className="text-slate-400 hover:text-white text-sm transition-colors duration-300 flex items-center gap-2 group"
+                  >
                     <div className="w-1 h-1 rounded-full bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item.name}
                   </a>
@@ -115,10 +149,10 @@ export default function Footer() {
             <span>Hand-crafted in MERN Stack</span>
           </div>
 
-          {/* BACK TO TOP */}
+          {/* BACK TO TOP - ANIMATION APPLIED */}
           <motion.button
             whileHover={{ y: -5 }}
-            onClick={scrollToTop}
+            onClick={(e) => liquidScroll(e, "#home")}
             className="group flex items-center gap-3 text-blue-500 font-black text-[10px] uppercase tracking-widest bg-blue-500/5 hover:bg-blue-500/10 px-6 py-3 rounded-full border border-blue-500/20 transition-all"
           >
             Back to top

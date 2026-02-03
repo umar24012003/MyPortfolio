@@ -69,7 +69,7 @@ export default function Cursor() {
           opacity: isVisible ? 1 : 0,
           scale: isHovered ? 1.5 : 1,
         }}
-        className="absolute w-8 h-8 border border-blue-500/30 rounded-full transition-transform duration-300"
+        className="absolute w-8 h-8 border border-blue-500/30 rounded-full transition-transform duration-150"
       >
         <div className={`absolute inset-0 rounded-full border border-blue-400/20 ${isHovered ? 'animate-ping' : ''}`} />
       </motion.div>

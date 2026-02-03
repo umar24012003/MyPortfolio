@@ -21,10 +21,41 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = (e: React.MouseEvent) => {
+  // --- UNIQUE ELASTIC LIQUID SCROLL ANIMATION ---
+  const liquidScroll = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
     setIsOpen(false);
+    
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime: number | null = null;
+
+    // Custom Elastic Easing (The "Unique" feel)
+    const easeOutElastic = (t: number, b: number, c: number, d: number) => {
+      let s = 1.70158; let p = 0; let a = c;
+      if (t === 0) return b; if ((t /= d) === 1) return b + c; if (!p) p = d * 0.3;
+      if (a < Math.abs(c)) { a = c; s = p / 4; }
+      else s = p / (2 * Math.PI) * Math.asin(c / a);
+      return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+    };
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeOutElastic(timeElapsed, startPosition, distance, 1200);
+      window.scrollTo(0, run);
+      if (timeElapsed < 1200) requestAnimationFrame(animation);
+    };
+
+    requestAnimationFrame(animation);
+  };
+
+  const scrollToTop = (e: React.MouseEvent) => {
+    liquidScroll(e, "#home");
   };
 
   const navLinks = [
@@ -63,7 +94,12 @@ const Navbar = () => {
         {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-slate-900/50 border border-white/5 backdrop-blur-md">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="px-5 py-2 text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 rounded-full transition-all duration-300">
+            <a 
+              key={link.name} 
+              href={link.href}
+              onClick={(e) => liquidScroll(e, link.href)} // Applied animation
+              className="px-5 py-2 text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 rounded-full transition-all duration-300"
+            >
               {link.name}
             </a>
           ))}
@@ -71,7 +107,6 @@ const Navbar = () => {
 
         {/* RIGHT ACTIONS */}
         <div className="flex items-center gap-4 relative z-[110]">
-          {/* Desktop Only Actions */}
           <div className="hidden md:flex items-center gap-4 border-r border-white/10 pr-4">
             <a 
               href={`tel:${phoneNumber}`} 
@@ -88,7 +123,6 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* MOBILE MENU TOGGLE - Now the only item on the right for mobile */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
             className="flex md:hidden h-10 w-10 items-center justify-center rounded-xl bg-slate-900 border border-blue-500/20 text-white shadow-lg active:scale-95 transition-transform"
@@ -115,7 +149,7 @@ const Navbar = () => {
                   transition={{ delay: i * 0.1 }}
                   key={link.name} 
                   href={link.href} 
-                  onClick={() => setIsOpen(false)} 
+                  onClick={(e) => liquidScroll(e, link.href)} // Applied animation
                   className="text-2xl font-black uppercase tracking-tighter text-white hover:text-blue-500 transition-colors"
                 >
                   {link.name}
@@ -124,7 +158,6 @@ const Navbar = () => {
               
               <div className="h-px w-full bg-white/5 my-4" />
 
-              {/* CALL ME - Now visible here on mobile */}
               <motion.a 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
