@@ -9,8 +9,6 @@ import {
   Code,
   Layers,
   Database,
-  Terminal,
-  ShieldCheck,
   Zap,
   Box,
   Binary,
@@ -168,7 +166,8 @@ const AboutMe = () => {
                 className={`p-5 md:p-6 rounded-2xl bg-gradient-to-br ${skill.color} to-transparent border border-white/5 hover:border-blue-500/30 transition-all`}
               >
                 <div className="p-2 md:p-3 bg-slate-950 rounded-xl w-fit mb-4 text-blue-400 border border-white/5">
-                  {React.cloneElement(skill.icon as React.ReactElement, { size: 18 })}
+                  {/* FIXED: Added specific type to allow 'size' prop */}
+                  {React.cloneElement(skill.icon as React.ReactElement<{ size?: number }>, { size: 18 })}
                 </div>
                 <h5 className="font-bold text-white text-sm md:text-base mb-1">{skill.title}</h5>
                 <p className="text-[9px] md:text-[10px] text-slate-500 font-mono">{skill.list}</p>
