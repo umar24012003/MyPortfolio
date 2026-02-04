@@ -64,7 +64,6 @@ const AboutMe = () => {
           </div>
           <div className="hidden md:flex items-center gap-8 text-[10px] font-mono text-blue-300/50 uppercase">
             <div className="flex items-center gap-2"><Globe size={14} className="text-blue-400"/> Node: Global</div>
-            <div className="flex items-center gap-2"><Radio size={14} className="text-blue-400 animate-pulse"/> Frequency: 5.2GHz</div>
           </div>
         </div>
 

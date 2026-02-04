@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Quote, Shield, Zap, Code2 } from "lucide-react";
 
-const PortfolioManifesto = () => {
+const Manifesto = () => {
   return (
     <section className="relative py-24 bg-[#020617] overflow-hidden flex items-center justify-center">
       {/* Background Decor */}
@@ -58,10 +58,6 @@ const PortfolioManifesto = () => {
                 <p className="text-blue-100/40 text-[10px]">Ready for tomorrow.</p>
               </div>
             </div>
-
-            {/* Decorative Corner Numbers */}
-            <div className="absolute top-8 left-10 font-mono text-[10px] text-blue-900/40">0x3F_MANIFESTO</div>
-            <div className="absolute bottom-8 right-10 font-mono text-[10px] text-blue-900/40">VER: 3.65_OPTIMIZED</div>
           </div>
         </motion.div>
       </div>
@@ -69,4 +65,4 @@ const PortfolioManifesto = () => {
   );
 };
 
-export default PortfolioManifesto;
+export default Manifesto;
