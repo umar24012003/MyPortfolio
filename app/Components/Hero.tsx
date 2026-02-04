@@ -29,7 +29,6 @@ export default function Hero() {
   return (
     <section className="relative w-full min-h-screen bg-[#020617] text-white overflow-hidden flex items-center pt-24 md:pt-32 pb-12">
       
-      {/* ================= BACKGROUND LAYER ================= */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-10" />
       
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -45,7 +44,6 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center z-10">
         
-        {/* ================= LEFT CONTENT ================= */}
         <div className="order-2 lg:order-1 space-y-6 md:space-y-8 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -123,7 +121,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ================= RIGHT CONTENT ================= */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -132,21 +129,17 @@ export default function Hero() {
         >
           <div className="relative max-w-[450px] mx-auto transform rotate-2 hover:rotate-0 transition-transform duration-700">
             
-            {/* NEW: PROFESSIONAL TECH CIRCLES BEHIND PIC */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                {/* Rotating Dashed Circle 1 */}
                 <motion.div 
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     className="absolute w-[120%] h-[120%] border border-dashed border-blue-500/20 rounded-full"
                 />
-                {/* Rotating Dashed Circle 2 (Inverse) */}
                 <motion.div 
                     animate={{ rotate: -360 }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                     className="absolute w-[105%] h-[105%] border border-dotted border-blue-600/10 rounded-full"
                 />
-                {/* Glow Pulse */}
                 <motion.div 
                     animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
                     transition={{ duration: 4, repeat: Infinity }}
@@ -185,7 +178,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Name Tag */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[220px] md:w-full md:max-w-[300px]">
             <div className="bg-slate-900/90 border border-blue-500/20 backdrop-blur-2xl rounded-xl md:rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4 shadow-2xl">
               <div className="h-8 w-8 md:h-10 md:w-10 rounded-lg bg-blue-600 flex items-center justify-center font-black text-xs md:text-base">UN</div>
@@ -199,7 +191,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ================= POPUP MODAL ================= */}
       <AnimatePresence>
         {isResumeOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4">

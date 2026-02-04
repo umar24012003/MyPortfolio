@@ -21,7 +21,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // --- UNIQUE ELASTIC LIQUID SCROLL ANIMATION ---
   const liquidScroll = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     setIsOpen(false);
@@ -34,7 +33,6 @@ const Navbar = () => {
     const distance = targetPosition - startPosition;
     let startTime: number | null = null;
 
-    // Custom Elastic Easing (The "Unique" feel)
     const easeOutElastic = (t: number, b: number, c: number, d: number) => {
       let s = 1.70158; let p = 0; let a = c;
       if (t === 0) return b; if ((t /= d) === 1) return b + c; if (!p) p = d * 0.3;
@@ -77,7 +75,6 @@ const Navbar = () => {
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
-        {/* LOGO */}
         <a href="#home" onClick={scrollToTop} className="flex items-center gap-3 group cursor-pointer relative z-[110]">
           <div className="relative">
             <div className="absolute -inset-1 bg-blue-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000" />
@@ -91,13 +88,12 @@ const Navbar = () => {
           </div>
         </a>
 
-        {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-1 p-1 rounded-full bg-slate-900/50 border border-white/5 backdrop-blur-md">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              onClick={(e) => liquidScroll(e, link.href)} // Applied animation
+              onClick={(e) => liquidScroll(e, link.href)} 
               className="px-5 py-2 text-[10px] lg:text-[11px] font-bold uppercase tracking-widest text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 rounded-full transition-all duration-300"
             >
               {link.name}
@@ -105,7 +101,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* RIGHT ACTIONS */}
         <div className="flex items-center gap-4 relative z-[110]">
           <div className="hidden md:flex items-center gap-4 border-r border-white/10 pr-4">
             <a 
@@ -132,7 +127,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* MOBILE OVERLAY MENU */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 

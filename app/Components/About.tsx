@@ -30,7 +30,6 @@ const AboutMe = () => {
       ref={containerRef}
       className="relative min-h-screen bg-[#020617] text-white flex flex-col items-center justify-center px-4 py-24 overflow-hidden"
     >
-      {/* --- CINEMATIC OVERLAYS --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_80%)]" />
         <div 
@@ -51,7 +50,6 @@ const AboutMe = () => {
 
       <div className="relative z-10 w-full max-w-7xl space-y-4">
         
-        {/* --- TOP HUD BAR --- */}
         <div className="flex justify-between items-center border-b border-blue-500/20 pb-6 mb-12">
           <div className="flex items-center gap-4">
             <div className="p-2 bg-blue-500/10 border border-blue-400/30 rounded-lg">
@@ -67,10 +65,8 @@ const AboutMe = () => {
           </div>
         </div>
 
-        {/* --- HERO ARCHITECT SECTION --- */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
           
-          {/* THE BIO "CORE" */}
           <motion.div 
             style={{ y: y1 }}
             className="lg:col-span-7 group relative p-10 rounded-[2.5rem] bg-blue-950/20 border border-blue-400/20 backdrop-blur-3xl overflow-hidden"
@@ -88,7 +84,6 @@ const AboutMe = () => {
             </div>
           </motion.div>
 
-          {/* THE METRIC CLUSTER */}
           <div className="lg:col-span-5 grid grid-cols-1 gap-4">
             {/* GPA Card */}
             <motion.div 
@@ -103,9 +98,7 @@ const AboutMe = () => {
               <Activity className="absolute right-[-20px] bottom-[-20px] opacity-10 text-white group-hover:rotate-12 transition-transform duration-500" size={200} />
             </motion.div>
 
-            {/* UP TIME & PROJECTS (MODIFIED SECTION) */}
             <div className="grid grid-cols-2 gap-4">
-               {/* STUNNING UPTIME CARD */}
                <div className="relative p-6 rounded-[2rem] bg-blue-400/5 border border-blue-400/20 backdrop-blur-md overflow-hidden group">
                   <div className="flex justify-between items-start mb-4">
                     <p className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Live Uptime</p>
@@ -113,7 +106,7 @@ const AboutMe = () => {
                   </div>
                   <p className="text-4xl font-black text-white">99.9<span className="text-blue-500 text-xl">%</span></p>
                   
-                  {/* Heartbeat Visualization */}
+                  {/* Heartbeat Visualization Animationss */}
                   <div className="absolute bottom-0 left-0 right-0 h-12 flex items-end opacity-30 px-2 gap-[2px]">
                     {[...Array(12)].map((_, i) => (
                       <motion.div
@@ -126,13 +119,12 @@ const AboutMe = () => {
                   </div>
                </div>
 
-               {/* STUNNING PROJECTS CARD */}
                <div className="relative p-6 rounded-[2rem] bg-blue-400/5 border border-blue-400/20 backdrop-blur-md overflow-hidden flex flex-col justify-center items-center group">
                   <div className="absolute top-4 left-4">
                     <p className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Shipments</p>
                   </div>
                   
-                  {/* Orbit Animation */}
+                  {/* Orbit Spinner Animation */}
                   <div className="relative h-16 w-16 mb-2 mt-4">
                     <motion.div 
                       animate={{ rotate: 360 }}
@@ -150,7 +142,6 @@ const AboutMe = () => {
             </div>
           </div>
 
-          {/* TECH CIRCUITRY */}
           <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { label: "Frontend", tech: "React / Next.js", icon: <Layers size={20}/> },
@@ -174,7 +165,6 @@ const AboutMe = () => {
             ))}
           </div>
 
-          {/* CODE TERMINAL */}
           <motion.div className="lg:col-span-12 relative rounded-[2rem] bg-[#010409] border border-blue-500/10 overflow-hidden">
             <div className="flex items-center px-6 py-4 bg-blue-950/40 border-b border-blue-500/10 justify-between">
               <div className="flex gap-2">
@@ -199,7 +189,6 @@ const AboutMe = () => {
 
         </div>
 
-        {/* --- FLOATING ACTION --- */}
         <div className="relative pt-20 flex flex-col items-center">
           <motion.button 
             whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(59, 130, 246, 0.3)" }}

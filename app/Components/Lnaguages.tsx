@@ -20,7 +20,6 @@ import {
   Terminal 
 } from 'lucide-react';
 
-// Define the shape for TypeScript to prevent 'x' and 'y' errors
 interface Skill {
   name: string;
   icon: React.ReactNode;
@@ -81,19 +80,16 @@ export default function TechNeuralNetwork() {
         </motion.p>
       </div>
 
-      {/* 1. CENTERED BACKGROUND TEXT */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
         <h2 className="text-white/[0.03] text-[15vw] font-black uppercase tracking-tighter leading-none text-center">
           Stack<br/>Focus
         </h2>
       </div>
 
-      {/* 2. BACKGROUND MESH */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
       
       <div className="relative w-full max-w-5xl h-[600px] z-10">
         
-        {/* SVG NETWORK CONNECTIONS */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible">
           <defs>
             <filter id="glow-effect">
@@ -122,7 +118,6 @@ export default function TechNeuralNetwork() {
           ))}
         </svg>
 
-        {/* 3. CENTRAL HUB */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40">
           <motion.div 
             animate={{ 
@@ -143,7 +138,6 @@ export default function TechNeuralNetwork() {
                     transition={{ duration: 0.2 }}
                     style={{ color: skills[hoveredIndex].color }}
                   >
-                    {/* FIXED: Type casting for cloneElement */}
                     {React.isValidElement(skills[hoveredIndex].icon) && 
                       React.cloneElement(skills[hoveredIndex].icon as React.ReactElement<{ size?: number }>, { size: 40 })}
                   </motion.div>
@@ -164,7 +158,6 @@ export default function TechNeuralNetwork() {
           </motion.div>
         </div>
 
-        {/* 4. SKILL NODES */}
         {skills.map((skill, i) => (
           <motion.div
             key={`node-${i}`}
@@ -194,7 +187,6 @@ export default function TechNeuralNetwork() {
                   className="transition-colors duration-300" 
                   style={{ color: hoveredIndex === i ? skill.color : '#475569' }}
                 >
-                  {/* FIXED: Type casting for cloneElement */}
                   {React.isValidElement(skill.icon) && 
                     React.cloneElement(skill.icon as React.ReactElement<{ size?: number }>, { size: 28 })}
                 </div>

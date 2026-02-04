@@ -4,15 +4,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Sparkles, Zap } from "lucide-react";
 
-/* ======================================================
-   EXPERIENCE DATA
-====================================================== */
 
 const data = [
   {
     role: "Full Stack Developer Internship",
     company: "Techoo Software House",
-    time: "2024 - 2024", // Added spaces for better readability
+    time: "2024 - 2024", 
     desc: "Developed immersive UI systems with complex animations, focusing on performance optimization and responsive design systems.",
     skills: ["React"],
   },
@@ -32,9 +29,6 @@ const data = [
   },
 ];
 
-/* ======================================================
-   FLOATING BLUE PHOTONS
-====================================================== */
 
 function Particles() {
   return (
@@ -61,10 +55,6 @@ function Particles() {
     </div>
   );
 }
-
-/* ======================================================
-   TIMELINE CARD
-====================================================== */
 
 function Card({ item, index }: any) {
   const isLeft = index % 2 === 0;
@@ -98,7 +88,6 @@ function Card({ item, index }: any) {
                 <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">{item.role}</h3>
                 <p className="text-blue-500 font-mono text-sm font-semibold">{item.company}</p>
             </div>
-            {/* FIX: added whitespace-nowrap and shrink-0 to prevent text wrapping */}
             <span className="whitespace-nowrap shrink-0 text-[10px] font-bold py-1 px-3 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
                 {item.time}
             </span>
@@ -123,9 +112,6 @@ function Card({ item, index }: any) {
   );
 }
 
-/* ======================================================
-   MAIN EXPERIENCE SECTION
-====================================================== */
 
 export default function Experience() {
   return (

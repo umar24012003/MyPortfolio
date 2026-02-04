@@ -7,7 +7,6 @@ import { Quote, Shield, Zap, Code2 } from "lucide-react";
 const Manifesto = () => {
   return (
     <section className="relative py-24 bg-[#020617] overflow-hidden flex items-center justify-center">
-      {/* Background Decor */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-blue-600/10 blur-[120px] rotate-12 rounded-full" />
       </div>
@@ -21,7 +20,6 @@ const Manifesto = () => {
         >
           <div className="bg-[#020617]/80 rounded-[2.8rem] p-8 md:p-20 text-center relative overflow-hidden">
             
-            {/* Animated Icon */}
             <motion.div 
               animate={{ rotateY: [0, 180, 360] }}
               transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
@@ -30,7 +28,6 @@ const Manifesto = () => {
               <Code2 size={32} />
             </motion.div>
 
-            {/* THE UNIQUE QUOTE */}
             <h2 className="text-3xl md:text-6xl font-black text-white leading-tight tracking-tighter mb-8 italic">
               "ANYONE CAN WRITE <span className="text-blue-500">CODE</span>. <br />
               I ARCHITECT <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-blue-500">CERTAINTY</span>."
@@ -40,7 +37,6 @@ const Manifesto = () => {
               Logic is the law. Performance is the standard.
             </p>
 
-            {/* Interactive Values */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-blue-500/10 pt-12">
               <div className="flex flex-col items-center gap-3">
                 <Shield className="text-blue-400" size={24} />
